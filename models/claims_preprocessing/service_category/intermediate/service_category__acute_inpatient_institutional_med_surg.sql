@@ -4,7 +4,7 @@
 }}
 
 select distinct
-    a.claim_id
+    s.claim_id
   , 'inpatient' as service_category_1
   , 'acute inpatient' as service_category_2
   , case
@@ -15,9 +15,7 @@ select distinct
     end as service_category_3
   , '{{ this.name }}' as source_model_name
   , '{{ var('tuva_last_run') }}' as tuva_last_run
-from {{ ref('service_category__stg_medical_claim') }} as s
-inner join {{ ref('service_category__stg_inpatient_institutional') }} as a
-  on s.claim_id = a.claim_id
+from {{ ref('service_category__stg_inpatient_institutional') }} as s
 left outer join {{ ref('terminology__ms_drg') }} as ms
   on s.drg_code = ms.ms_drg_code
   and s.drg_code_type = 'ms-drg'

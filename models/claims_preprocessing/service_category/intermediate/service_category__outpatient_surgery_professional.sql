@@ -11,10 +11,7 @@ select distinct
   , 'outpatient surgery' as service_category_3
   , '{{ this.name }}' as source_model_name
   , '{{ var('tuva_last_run') }}' as tuva_last_run
-from {{ ref('service_category__stg_medical_claim') }} as med
-inner join {{ ref('service_category__stg_professional') }} as prof on med.claim_id = prof.claim_id
-and
-med.claim_line_number = prof.claim_line_number
+from {{ ref('service_category__stg_professional') }} as med
 where
 (ccs_category between '1' and '176'
 or

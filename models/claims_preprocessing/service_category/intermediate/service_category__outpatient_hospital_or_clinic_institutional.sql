@@ -10,9 +10,7 @@ with multiple_sources as (
       , 'outpatient hospital or clinic' as service_category_3
       , '{{ this.name }}' as source_model_name
       , '{{ var('tuva_last_run') }}' as tuva_last_run
-    from {{ ref('service_category__stg_medical_claim') }} as m
-    inner join {{ ref('service_category__stg_outpatient_institutional') }} as o
-      on m.claim_id = o.claim_id
+    from {{ ref('service_category__stg_outpatient_institutional') }} as m
     where
       substring(m.bill_type_code, 1, 2) in (
         '13'  -- Hospital Outpatient
@@ -36,9 +34,7 @@ with multiple_sources as (
       , 'outpatient hospital or clinic' as service_category_3
       , '{{ this.name }}' as source_model_name
       , '{{ var('tuva_last_run') }}' as tuva_last_run
-    from {{ ref('service_category__stg_medical_claim') }} as m
-    inner join {{ ref('service_category__stg_outpatient_institutional') }} as o
-      on m.claim_id = o.claim_id
+    from {{ ref('service_category__stg_outpatient_institutional') }} as m
     where
       m.ccs_category = '227' -- Consultation, evaluation, and preventative care
 )

@@ -12,9 +12,7 @@ with multiple_sources as (
       , 'pharmacy' as service_category_3
       , '{{ this.name }}' as source_model_name
       , '{{ var('tuva_last_run') }}' as tuva_last_run
-    from {{ ref('service_category__stg_medical_claim') }} as med
-    inner join {{ ref('service_category__stg_outpatient_institutional') }} as outpatient
-      on med.claim_id = outpatient.claim_id
+    from {{ ref('service_category__stg_outpatient_institutional') }} as med
     where
       (substring(med.revenue_center_code, 1, 3) in ('025', '026', '063', '089') -- pharmacy and iv therapy
       or med.revenue_center_code = '0547'
@@ -30,9 +28,7 @@ with multiple_sources as (
       , 'pharmacy' as service_category_3
       , '{{ this.name }}' as source_model_name
       , '{{ var('tuva_last_run') }}' as tuva_last_run
-    from {{ ref('service_category__stg_medical_claim') }} as med
-    inner join {{ ref('service_category__stg_inpatient_institutional') }} as outpatient
-      on med.claim_id = outpatient.claim_id
+    from {{ ref('service_category__stg_inpatient_institutional') }} as med
     where
       (substring(med.revenue_center_code, 1, 3) in ('025', '026', '063', '089') -- pharmacy and iv therapy
       or med.revenue_center_code = '0547')

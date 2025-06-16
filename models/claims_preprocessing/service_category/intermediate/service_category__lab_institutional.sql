@@ -11,9 +11,7 @@ select distinct
 , 'lab' as service_category_3
 , '{{ this.name }}' as source_model_name
 , '{{ var('tuva_last_run') }}' as tuva_last_run
-from {{ ref('service_category__stg_medical_claim') }} as med
-inner join {{ ref('service_category__stg_outpatient_institutional') }} as outpatient
-    on med.claim_id = outpatient.claim_id
+from {{ ref('service_category__stg_outpatient_institutional') }} as med
 where substring(med.bill_type_code, 1, 2) in ('14')
 or
 med.ccs_category in ('233' -- lab

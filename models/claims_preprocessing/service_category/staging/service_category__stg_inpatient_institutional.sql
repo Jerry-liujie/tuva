@@ -4,8 +4,7 @@
 }}
 
 with drg_requirement as (
-  select distinct
-      mc.claim_id
+  select mc.*
   from {{ ref('service_category__stg_medical_claim') }} as mc
   left outer join {{ ref('terminology__ms_drg') }} as msdrg
     on mc.drg_code_type = 'ms-drg'
@@ -20,8 +19,7 @@ with drg_requirement as (
 )
 
 , bill_type_requirement as (
-  select distinct
-      claim_id
+  select *
   from {{ ref('service_category__stg_medical_claim') }}
   where claim_type = 'institutional'
     and substring(bill_type_code, 1, 2) in (
@@ -54,13 +52,9 @@ with drg_requirement as (
     )
 )
 
-select distinct
-    a.claim_id
+select d.*
   , 'inpatient' as service_type
-  , '{{ var('tuva_last_run') }}' as tuva_last_run
-from {{ ref('service_category__stg_medical_claim') }} as a
-inner join bill_type_requirement as d
-  on a.claim_id = d.claim_id
+from bill_type_requirement as d
 
 {% if target.type == 'fabric' %}
 union
@@ -68,10 +62,6 @@ union
 union distinct
 {% endif %}
 
-select distinct
-    a.claim_id
+select d.*
   , 'inpatient' as service_type
-  , '{{ var('tuva_last_run') }}' as tuva_last_run
-from {{ ref('service_category__stg_medical_claim') }} as a
-inner join drg_requirement as c
-  on a.claim_id = c.claim_id
+from drg_requirement as d

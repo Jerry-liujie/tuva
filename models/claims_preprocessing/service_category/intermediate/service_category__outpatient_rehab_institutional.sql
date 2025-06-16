@@ -10,9 +10,7 @@ with multiple_sources as (
       , 'outpatient rehabilitation' as service_category_3
       , '{{ this.name }}' as source_model_name
       , '{{ var('tuva_last_run') }}' as tuva_last_run
-    from {{ ref('service_category__stg_medical_claim') }} as m
-    inner join {{ ref('service_category__stg_outpatient_institutional') }} as i
-      on m.claim_id = i.claim_id
+    from {{ ref('service_category__stg_outpatient_institutional') }} as m
     where
       m.primary_taxonomy_code in (
           '283X00000X'

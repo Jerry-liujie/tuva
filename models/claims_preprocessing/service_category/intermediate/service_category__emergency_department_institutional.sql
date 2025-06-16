@@ -10,9 +10,7 @@ select distinct
     , 'emergency department' as service_category_3
     , '{{ var('tuva_last_run') }}' as tuva_last_run
     , '{{ this.name }}' as source_model_name
-from {{ ref('service_category__stg_medical_claim') }} as med
-inner join {{ ref('service_category__stg_outpatient_institutional') }} as outpatient
-    on med.claim_id = outpatient.claim_id
+from {{ ref('service_category__stg_outpatient_institutional') }} as med
 where revenue_center_code in ('0450', '0451', '0452', '0459', '0981')
 or
 hcpcs_code in ('99281', '99282', '99283', '99284', '99285', 'G0380', 'G0381', 'G0382', 'G0383', 'G0384')
@@ -26,9 +24,7 @@ select distinct
     , 'emergency department' as service_category_3
     , '{{ var('tuva_last_run') }}' as tuva_last_run
     , '{{ this.name }}' as source_model_name
-from {{ ref('service_category__stg_medical_claim') }} as med
-inner join {{ ref('service_category__stg_inpatient_institutional') }} as inp
-    on med.claim_id = inp.claim_id
+from {{ ref('service_category__stg_inpatient_institutional') }} as med
 where revenue_center_code in ('0450', '0451', '0452', '0459', '0981')
 
 )
