@@ -187,7 +187,7 @@ models:
 
       '
     alias: normalized_input_medical_claim
-    materialized: view
+    materialized: table
     tags:
     - normalized_input
     - claims_preprocessing

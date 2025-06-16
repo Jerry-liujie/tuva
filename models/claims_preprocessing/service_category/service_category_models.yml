@@ -8,7 +8,7 @@ models:
 
       '
     alias: service_category_grouper
-    materialized: view
+    materialized: table
     tags:
     - service_category_grouper
     - claims_preprocessing
@@ -110,7 +110,7 @@ models:
 
       '
     alias: _int_combined_professional
-    materialized: view
+    materialized: table
     tags:
     - service_category_grouper
     - claims_preprocessing
@@ -123,7 +123,7 @@ models:
 
       '
     alias: _int_combined_institutional_header_level
-    materialized: view
+    materialized: table
     tags:
     - service_category_grouper
     - claims_preprocessing
@@ -136,7 +136,7 @@ models:
 
       '
     alias: _int_combined_institutional_line_level
-    materialized: view
+    materialized: table
     tags:
     - service_category_grouper
     - claims_preprocessing

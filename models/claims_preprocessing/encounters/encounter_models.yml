@@ -860,7 +860,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -3215,7 +3215,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -3251,7 +3251,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -3299,7 +3299,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -3335,7 +3335,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -3371,7 +3371,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -3407,7 +3407,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -3443,7 +3443,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
@@ -4198,7 +4198,7 @@ models:
       {%- else -%}claims_preprocessing{%- endif -%}
 
       '
-    materialized: view
+    materialized: table
     tags:
     - claims_preprocessing
     - encounters
