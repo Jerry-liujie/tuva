@@ -879,6 +879,20 @@ models:
       - name: tuva_last_run
         description: '{{ doc("tuva_last_run") }}'
 
+  - name: generate_encounter_id_base
+    description: "created by Jie"
+    config:
+      schema: |
+        {%- if var('tuva_schema_prefix', None) != None -%}
+          {{ var('tuva_schema_prefix') }}_claims_preprocessing
+        {%- else -%}
+          claims_preprocessing
+        {%- endif -%}
+      materialized: table
+      tags:
+        - claims_preprocessing
+        - encounters
+
   - name: encounters__combined_claim_line_crosswalk
     description: all claim lines that belong to an encounter
     config:
