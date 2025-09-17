@@ -3,28 +3,15 @@
    )
 }}
 
-with claim_start_end as (
-  select
+with base as (
+  select distinct
     claim_id
     , patient_data_source_id
-    , min(start_date) as start_date
-    , max(end_date) as end_date
-  from {{ ref('encounters__stg_medical_claim') }}
-  group by claim_id, patient_data_source_id
-)
-
-, base as (
-  select distinct
-    enc.claim_id
-    , enc.patient_data_source_id
-    , c.start_date
-    , c.end_date
-    , enc.facility_id
-    , enc.discharge_disposition_code
-  from {{ ref('encounters__stg_medical_claim') }} as enc
-  inner join claim_start_end as c
-    on enc.claim_id = c.claim_id
-    and c.patient_data_source_id = enc.patient_data_source_id
+    , start_date
+    , end_date
+    , facility_id
+    , discharge_disposition_code
+  from {{ ref('generate_encounter_id_base') }} as enc
   where
     enc.service_category_2 = 'inpatient substance use'
     and enc.claim_type = 'institutional'
