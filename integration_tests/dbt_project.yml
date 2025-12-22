@@ -5,9 +5,15 @@ config-version: 2
 profile: bq
 
 
+# query-comment:
+#   job-label: true
+#   comment: "{{ bq_labels(node) }}"
+
+
 query-comment:
-  job-label: true
-  comment: "{{ bq_labels(node) }}"
+  # This injects the run start time into a comment at the top of every query
+  comment: 'Benchmarking: {{ run_started_at }}'
+  append: true
 
 vars:
   error_empty_seeds: true
